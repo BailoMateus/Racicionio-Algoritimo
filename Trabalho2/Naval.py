@@ -1,4 +1,9 @@
 
+tamanho_navio = {"P": 4, "C": 4, "F": 2}
+nome_navio = {"P": "Porta-Aviões", "C": "Cruzador", "F": "Fragata"}
+pontuacao_por_navio = {"P": 30, "C": 20, "F": 10}
+
+
 # Cria uma matriz 20x20 preenchida com "~"
 def criar_tabuleiro():
     return [["~" for _ in range(20)] for _ in range(20)]
@@ -32,5 +37,55 @@ def posicao_valida(tabuleiro, linha, coluna_inicial, tamanho_navio):
             return False # Já tem navio aqui
     return True
 
+def eh_coordenada_valida(coordenada):
+    if len(coordenada) < 2:
+        return False
+    
+    letra = coordenada[0].upper()
+    numero = coordenada[1:]
+    return letra.isalpha() and numero.isdigit() and 'A' <= letra <= 'T' and 1<= int(numero) <= 20
+
+def atacar(tabuleiro_real, tabuleiro_ataque, pontuacao, partes_restantes):
+    while True:
+        print("atacar")
+        exibir_tabuleiro(tabuleiro_ataque)
+        coordenada = input("Digite a coodernada para atacar (ex: D7): ").strip().upper()
+
+        if not eh_coordenada_valida(coordenada):
+            print("Cordenada Invalida.")
+            continue
+
+        linha = letra_para_indice(coordenada[0])
+        coluna = int(coordenada[1:0])
+        
+        if tabuleiro_ataque[linha][coluna] in ["X", "O"]:
+            print("Você ja atacou essa posição")
+            continue
+
+
+        alvo = tabuleiro_real[linha][coluna]
+
+        if alvo in ["P", "c", "F"]:
+            tabuleiro_ataque[linha][coluna] = "X"
+            tabuleiro_real[linha][coluna] = "X"
+            print("Acertou")
+            
+            partes_restantes[alvo] -= 2
+            if partes_restantes[alvo] % tamanho_navio[alvo] ==0:
+                pontos = pontuacao_por_navio[alvo]
+                pontuacao[0] += pontos
+                print(f"Você afundou um {nome_navio}[alvo]! (+{pontos} pontos)")
+
+        else:
+            tabuleiro_ataque[linha][coluna] = "O"
+            print("Errou...")
+
+        if all(quantidade == 0 for quantidade in partes_restantes.values()):
+            print("\n Todos os navios foram afundados!")
+            print(f"Pontuação final: {pontuacao[0]} pontos")
+            break
+
+           
+       
 
 
