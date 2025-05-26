@@ -124,8 +124,8 @@ def atacar(tabuleiro_real, tabuleiro_ataque, pontuacao, partes_restantes, tamanh
 
         # Fim do jogo: todos os navios afundados
         if all(restantes == 0 for restantes in partes_restantes):
-            print("\n🏁 Todos os navios foram afundados!")
-            print(f"🎉 Pontuação final: {pontuacao[0]} pontos")
+            print("\n Todos os navios foram afundados!")
+            print(f" Pontuação final: {pontuacao[0]} pontos")
             break
 
 # Gera um tabuleiro com navios posicionados automaticamente para testes
@@ -179,7 +179,7 @@ def main():
     if escolha == "2":
         # Gera tabuleiro com navios posicionados automaticamente
         tabuleiro_real = gerar_tabuleiro_teste()
-        print("🔧 Tabuleiro de teste gerado automaticamente!")
+        print("Tabuleiro de teste gerado automaticamente!")
         exibir_tabuleiro(tabuleiro_real)  # Mostra navios no modo teste
     else:
         # Posicionamento manual
