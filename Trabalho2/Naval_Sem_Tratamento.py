@@ -138,7 +138,7 @@ def main():
 
     if escolha == "2":
         tabuleiro_real = gerar_tabuleiro_teste()
-        print("🔧 Tabuleiro de teste gerado automaticamente!")
+        print(" Tabuleiro de teste gerado automaticamente!")
         exibir_tabuleiro(tabuleiro_real)
     else:
         tabuleiro_real = criar_tabuleiro()
