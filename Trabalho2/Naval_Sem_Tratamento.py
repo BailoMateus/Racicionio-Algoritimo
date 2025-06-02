@@ -204,9 +204,18 @@ def main():
             print("Saindo do Jogo")
             break
         elif escolha =="1":
+            # Cria o tabuleiro real vazio
             tabuleiro_real = criar_tabuleiro()
-            for i in range(3):
-                posicionar_navio(tabuleiro_real, nomes_navios[i], quantidades_navios[i], tamanhos_navios[i], simbolos_navios[i])
+             # Para cada navio (iterando sobre os índices e elementos das listas de navios)
+            for indice_navio in range(3):
+                # Passamos as informações de cada navio para a função posicionar_navio
+                posicionar_navio(
+                    tabuleiro_real,
+                    nomes_navios[indice_navio],       # Nome do navio
+                    quantidades_navios[indice_navio], # Quantidade de navios
+                    tamanhos_navios[indice_navio],    # Tamanho do navio
+                    simbolos_navios[indice_navio]     # Símbolo do navio
+                    )
             break
         elif escolha =="2":
             tabuleiro_real = gerar_tabuleiro_teste()
