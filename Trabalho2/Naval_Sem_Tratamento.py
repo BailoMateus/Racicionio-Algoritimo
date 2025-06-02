@@ -5,7 +5,7 @@
 
 # Cria um tabuleiro 20x20 preenchido com "~", representando o mar (água)
 def criar_tabuleiro():
-    return [["~" for _ in range(20)] for _ in range(20)]
+    return [["~" for linha_tabuleiro in range(20)] for coluna_tabuleiro in range(20)]
 
 # Exibe o tabuleiro formatado com letras (A-T) nas linhas e números (1-20) nas colunas
 def exibir_tabuleiro(tabuleiro):
@@ -19,11 +19,11 @@ def exibir_tabuleiro(tabuleiro):
 # Converte símbolo do navio em índice para uso nas listas de pontuação e controle
 def simbolo_para_indice(simbolo):
     if simbolo == "P":
-        return 0  # Porta-Aviões
+        return 0  # Porta-Aviõess
     elif simbolo == "C":
         return 1  # Cruzador
     elif simbolo == "F":
-        return 2  # Fragata
+        return 2  # Fragatas
     return -1    # Água ou espaço vazio
 
 # Permite ao jogador posicionar os navios manualmente no tabuleiro
