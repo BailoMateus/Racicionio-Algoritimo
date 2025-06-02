@@ -76,7 +76,7 @@ def posicionar_navio(tabuleiro, nome, quantidade, tamanho, simbolo):
     for numero_navio in range(quantidade):
         while True:
             exibir_tabuleiro(tabuleiro)
-            entrada = input(f"Posicione o {nome} #{numero_navio + 1} (ex: B10): ").strip().upper()
+            entrada = input(f"Posicione o {nome} #{numero_navio + 1} (ex: B10): ")
 
             # Converte coordenada em índice de linha e coluna
             linha = ord(entrada[0]) - 65
@@ -90,7 +90,7 @@ def posicionar_navio(tabuleiro, nome, quantidade, tamanho, simbolo):
             for deslocamento in range(tamanho):
                 if tabuleiro[linha][coluna + deslocamento] != "~":
                     sobreposicao = True
-                    break1
+                    break
 
             if sobreposicao:
                 print("Ja existe um navio nessa posição!!")
@@ -105,8 +105,7 @@ def atacar(tabuleiro_real, tabuleiro_ataque, pontuacao, partes_restantes, tamanh
     while True:
         print("\n======= ATAQUE =======")
         exibir_tabuleiro(tabuleiro_ataque)
-        coordenada = input("Digite a coordenada para atacar (ex: D7): ").strip().upper()
-
+        coordenada = input("Digite a coordenada para atacar (ex: D7): ")
         letra = coordenada[0]
         numero_str = coordenada[1:]
         linha = ord(letra) - 65
@@ -145,7 +144,7 @@ def atacar(tabuleiro_real, tabuleiro_ataque, pontuacao, partes_restantes, tamanh
             print(f" Pontuação final: {pontuacao[0]} pontos")
             break
 
-        continuar = input("Deseja continuar jogando ? (S/N)").strip().upper()
+        continuar = input("Deseja continuar jogando ? (S/N)")
         if continuar == "N":
             print(f"\n Jogo Encerrado pelo jogador")
             print(f" Pontuação Final: {pontuacao[0]} pontos")
@@ -197,7 +196,7 @@ def main():
         print("1 - Posicionar navios manualmente")
         print("2 - Usar tabuleiro pronto para teste")
         print("0 - Sair do Jogo")
-        escolha = input("Sua escolha: ").strip()
+        escolha = input("Sua escolha: ")
 
         tabuleiro_ataque = criar_tabuleiro()
 
