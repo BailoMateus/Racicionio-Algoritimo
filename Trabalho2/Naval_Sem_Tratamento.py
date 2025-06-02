@@ -3,6 +3,28 @@
 # Alunos: Mateus Luiz Bailo, Icaro Nunes, Bruno Hinz
 #---------------------------------------------------------------------------------------------------------------------------------
 
+"""
+def criar_tabuleiro():
+    # Definimos o tamanho do tabuleiro
+    tamanho = 20
+
+    # Inicializamos uma lista vazia que irá representar o tabuleiro
+    tabuleiro = []
+
+    #  criar cada linha do tabuleiro
+    for linha in range(tamanho):
+        # Em cada linha, colocamos 20 elementos "~", representando o mar
+        linha_do_tabuleiro = ["~"] * tamanho
+
+        # Adicionamos a linha ao tabuleiro
+        tabuleiro.append(linha_do_tabuleiro)
+
+    # Retornamos o tabuleiro completo
+    return tabuleiro
+
+"""
+
+
 # Cria um tabuleiro 20x20 preenchido com "~", representando o mar (água)
 def criar_tabuleiro():
     return [["~" for linha_tabuleiro in range(20)] for coluna_tabuleiro in range(20)]
