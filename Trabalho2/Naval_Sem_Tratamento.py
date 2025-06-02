@@ -30,16 +30,31 @@ def simbolo_para_indice(simbolo):
 def posicionar_navio(tabuleiro, nome, quantidade, tamanho, simbolo):
     print(f"\n== Posicionamento de {nome} ({quantidade} navios de {tamanho} células) ==")
     for numero_navio in range(quantidade):
-        exibir_tabuleiro(tabuleiro)
-        entrada = input(f"Posicione o {nome} #{numero_navio + 1} (ex: B10): ").strip().upper()
+        while True:
+            exibir_tabuleiro(tabuleiro)
+            entrada = input(f"Posicione o {nome} #{numero_navio + 1} (ex: B10): ").strip().upper()
 
-        # Converte coordenada em índice de linha e coluna
-        linha = ord(entrada[0]) - 65
-        coluna = int(entrada[1:]) - 1
+            # Converte coordenada em índice de linha e coluna
+            linha = ord(entrada[0]) - 65
+            coluna = int(entrada[1:]) - 1
 
-        # Posiciona o navio na horizontal a partir da coordenada informada
-        for deslocamento in range(tamanho):
-            tabuleiro[linha][coluna + deslocamento] = simbolo
+            if coluna + tamanho > 20:
+                print("Navio não cabe na linha, tente outra posição")
+                continue
+
+            sobreposicao = False
+            for deslocamento in range(tamanho):
+                if tabuleiro[linha][coluna + deslocamento] != "~":
+                    sobreposicao = True
+                    break1
+
+            if sobreposicao:
+                print("Ja existe um navio nessa posição!!")
+
+            # Posiciona o navio na horizontal a partir da coordenada informada
+            for deslocamento in range(tamanho):
+                tabuleiro[linha][coluna + deslocamento] = simbolo
+            break
 
 # Controla a fase de ataque, onde o jogador tenta acertar os navios
 def atacar(tabuleiro_real, tabuleiro_ataque, pontuacao, partes_restantes, tamanhos_navios, nomes_navios, pontuacoes_navios):
