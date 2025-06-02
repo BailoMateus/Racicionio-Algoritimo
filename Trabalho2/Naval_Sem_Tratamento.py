@@ -104,7 +104,7 @@ def atacar(tabuleiro_real, tabuleiro_ataque, pontuacao, partes_restantes, tamanh
         continuar = input("Deseja continuar jogando ? (S/N)").strip().upper()
         if continuar == "N":
             print(f"\n Jogo Encerrado pelo jogador")
-            print(f"Pontuação Final: {pontuacao[0]} pontos")
+            print(f" Pontuação Final: {pontuacao[0]} pontos")
 
 # Gera um tabuleiro com os navios já posicionados para testes (sem necessidade de input)
 def gerar_tabuleiro_teste():
