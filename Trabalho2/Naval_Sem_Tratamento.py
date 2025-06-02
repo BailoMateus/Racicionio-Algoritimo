@@ -13,7 +13,7 @@ def criar_tabuleiro():
 
     #  criar cada linha do tabuleiro
     for linha in range(tamanho):
-        # Em cada linha, colocamos 20 elementos "~", representando o mar
+        # Loop para criar 20 linhas (cada linha é uma lista com 20 "~")
         linha_do_tabuleiro = ["~"] * tamanho
 
         # Adicionamos a linha ao tabuleiro
@@ -21,6 +21,28 @@ def criar_tabuleiro():
 
     # Retornamos o tabuleiro completo
     return tabuleiro
+
+def exibir_tabuleiro(tabuleiro):
+    # Primeira parte: Cabeçalho com os números das colunas
+    # Criamos uma string com os números de 1 a 20, cada um com 2 espaços
+    cabecalho = "   "  # Espaço inicial para alinhamento
+    for i in range(20):
+        cabecalho += str(i + 1).rjust(2) + " "  # Rjust alinha os números à direita, garantindo que todos tenham 2 espaços
+    
+    # Exibimos o cabeçalho
+    print(cabecalho)
+    
+    # Segunda parte: Exibe as linhas do tabuleiro com as letras A a T
+    for linha_index in range(20):
+        letra = chr(65 + linha_index)  # Converte 0 → A, 1 → B, ..., 19 → T
+        conteudo = ""  # String para armazenar os valores da linha
+        
+        # Adicionamos o conteúdo de cada célula da linha
+        for coluna_index in range(20):
+            conteudo += tabuleiro[linha_index][coluna_index].rjust(2) + " "
+        
+        # Exibimos a linha com a letra (A-T) e o conteúdo das células
+        print(f"{letra}  {conteudo}")
 
 """
 
