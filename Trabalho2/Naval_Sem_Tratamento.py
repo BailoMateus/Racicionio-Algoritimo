@@ -86,6 +86,11 @@ def atacar(tabuleiro_real, tabuleiro_ataque, pontuacao, partes_restantes, tamanh
             print(f" Pontuação final: {pontuacao[0]} pontos")
             break
 
+        continuar = input("Deseja continuar jogando ? (S/N)").strip().upper()
+        if continuar == "N":
+            print(f"\n Jogo Encerrado pelo jogador")
+            print(f"Pontuação Final: {pontuacao[0]} pontos")
+
 # Gera um tabuleiro com os navios já posicionados para testes (sem necessidade de input)
 def gerar_tabuleiro_teste():
     tabuleiro = criar_tabuleiro()
@@ -128,22 +133,32 @@ def main():
         quantidades_navios[2] * tamanhos_navios[2]
     ]
 
-    # Escolha do modo de jogo: manual ou tabuleiro pronto
-    print("Escolha o modo:")
-    print("1 - Posicionar navios manualmente")
-    print("2 - Usar tabuleiro pronto para teste")
-    escolha = input("Sua escolha: ").strip()
+    while True:
+        print("Escolha o modo:")
+        print("1 - Posicionar navios manualmente")
+        print("2 - Usar tabuleiro pronto para teste")
+        print("0 - Sair do Jogo")
+        escolha = input("Sua escolha: ").strip()
 
-    tabuleiro_ataque = criar_tabuleiro()
+        tabuleiro_ataque = criar_tabuleiro()
 
-    if escolha == "2":
-        tabuleiro_real = gerar_tabuleiro_teste()
-        print(" Tabuleiro de teste gerado automaticamente!")
-        exibir_tabuleiro(tabuleiro_real)
-    else:
-        tabuleiro_real = criar_tabuleiro()
-        for i in range(3):
-            posicionar_navio(tabuleiro_real, nomes_navios[i], quantidades_navios[i], tamanhos_navios[i], simbolos_navios[i])
+        if escolha == "0":
+            print("Saindo do Jogo")
+            break
+        elif escolha =="1":
+            tabuleiro_real = criar_tabuleiro()
+            for i in range(3):
+                posicionar_navio(tabuleiro_real, nomes_navios[i], quantidades_navios[i], tamanhos_navios[i], simbolos_navios[i])
+            break
+        elif escolha =="2":
+            tabuleiro_real = gerar_tabuleiro_teste()
+            print("\n Tabuleiro para testes gerado automaticamente!")
+            exibir_tabuleiro(tabuleiro_real)
+            break
+        else:
+            print("Opção Invalida, Escolha 1, 2 ou 0")
+
+
 
     pontuacao = [0]  # Usamos uma lista para manter mutabilidade da pontuação
     atacar(tabuleiro_real, tabuleiro_ataque, pontuacao, partes_restantes, tamanhos_navios, nomes_navios, pontuacoes_navios)
