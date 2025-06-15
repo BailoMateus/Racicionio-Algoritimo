@@ -45,19 +45,6 @@ def exibir_tabuleiro(tabuleiro):
             linha_texto += " " + tabuleiro[linha_index][coluna_index] + " "
         print(linha_texto)
 
-# Cria um tabuleiro 20x20 preenchido com "~", representando o mar (água)
-def criar_tabuleiro():
-    return [["~" for linha_tabuleiro in range(20)] for coluna_tabuleiro in range(20)]
-
-# Exibe o tabuleiro formatado com letras (A-T) nas linhas e números (1-20) nas colunas
-def exibir_tabuleiro(tabuleiro):
-    cabecalho = "   " + " ".join([str(i + 1).rjust(2) for i in range(20)])
-    print(cabecalho)
-    for linha_index in range(20):
-        letra = chr(65 + linha_index)  # Converte 0 → A, 1 → B, ..., 19 → T
-        conteudo = " ".join(tabuleiro[linha_index][coluna_index].rjust(2) for coluna_index in range(20))
-        print(f"{letra}  {conteudo}")
-
 # Converte símbolo do navio em índice para uso nas listas de pontuação e controle
 def simbolo_para_indice(simbolo):
     if simbolo == "P":
