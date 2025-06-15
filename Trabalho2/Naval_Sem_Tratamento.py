@@ -4,48 +4,46 @@
 #---------------------------------------------------------------------------------------------------------------------------------
 
 """
+# Cria um tabuleiro 20x20 preenchido com "~", representando o mar (água)
 def criar_tabuleiro():
-    # Definimos o tamanho do tabuleiro
-    tamanho = 20
+    return [["~" for linha_tabuleiro in range(20)] for coluna_tabuleiro in range(20)]
 
-    # Inicializamos uma lista vazia que irá representar o tabuleiro
-    tabuleiro = []
-
-    #  criar cada linha do tabuleiro
-    for linha in range(tamanho):
-        # Loop para criar 20 linhas (cada linha é uma lista com 20 "~")
-        linha_do_tabuleiro = ["~"] * tamanho
-
-        # Adicionamos a linha ao tabuleiro
-        tabuleiro.append(linha_do_tabuleiro)
-
-    # Retornamos o tabuleiro completo
-    return tabuleiro
-
+# Exibe o tabuleiro formatado com letras (A-T) nas linhas e números (1-20) nas colunas
 def exibir_tabuleiro(tabuleiro):
-    # Primeira parte: Cabeçalho com os números das colunas
-    # Criamos uma string com os números de 1 a 20, cada um com 2 espaços
-    cabecalho = "   "  # Espaço inicial para alinhamento
-    for i in range(20):
-        cabecalho += str(i + 1).rjust(2) + " "  # Rjust alinha os números à direita, garantindo que todos tenham 2 espaços
-    
-    # Exibimos o cabeçalho
+    cabecalho = "   " + " ".join([str(i + 1).rjust(2) for i in range(20)])
     print(cabecalho)
-    
-    # Segunda parte: Exibe as linhas do tabuleiro com as letras A a T
     for linha_index in range(20):
         letra = chr(65 + linha_index)  # Converte 0 → A, 1 → B, ..., 19 → T
-        conteudo = ""  # String para armazenar os valores da linha
-        
-        # Adicionamos o conteúdo de cada célula da linha
-        for coluna_index in range(20):
-            conteudo += tabuleiro[linha_index][coluna_index].rjust(2) + " "
-        
-        # Exibimos a linha com a letra (A-T) e o conteúdo das células
+        conteudo = " ".join(tabuleiro[linha_index][coluna_index].rjust(2) for coluna_index in range(20))
         print(f"{letra}  {conteudo}")
 
 """
+def criar_tabuleiro():
+    tamanho = 20
+    tabuleiro = []
+    for linha in range(tamanho):
+        linha_do_tabuleiro = ["~"] * tamanho
+        tabuleiro.append(linha_do_tabuleiro)
+    return tabuleiro
 
+# Exibir o tabuleiro com letras (A-T) e números (1-20)
+def exibir_tabuleiro(tabuleiro):
+    # Cabeçalho com os números das colunas
+    cabecalho = "   "
+    for i in range(20):
+        if i + 1 < 10:
+            cabecalho += f" {i + 1} "
+        else:
+            cabecalho += f"{i + 1} "
+    print(cabecalho)
+
+    # Exibir cada linha do tabuleiro
+    for linha_index in range(20):
+        letra = chr(65 + linha_index)
+        linha_texto = letra + " "
+        for coluna_index in range(20):
+            linha_texto += " " + tabuleiro[linha_index][coluna_index] + " "
+        print(linha_texto)
 
 # Cria um tabuleiro 20x20 preenchido com "~", representando o mar (água)
 def criar_tabuleiro():
@@ -94,6 +92,7 @@ def posicionar_navio(tabuleiro, nome, quantidade, tamanho, simbolo):
 
             if sobreposicao:
                 print("Ja existe um navio nessa posição!!")
+                continue
 
             # Posiciona o navio na horizontal a partir da coordenada informada
             for deslocamento in range(tamanho):
@@ -144,10 +143,16 @@ def atacar(tabuleiro_real, tabuleiro_ataque, pontuacao, partes_restantes, tamanh
             print(f" Pontuação final: {pontuacao[0]} pontos")
             break
 
-        continuar = input("Deseja continuar jogando ? (S/N)")
-        if continuar == "N":
-            print(f"\n Jogo Encerrado pelo jogador")
-            print(f" Pontuação Final: {pontuacao[0]} pontos")
+        while True:
+            continuar = input("Deseja continuar jogando ? (S/N) ").strip().upper()
+            if continuar == "N":
+                print(f"\n Jogo Encerrado pelo jogador")
+                print(f" Pontuação Final: {pontuacao[0]} pontos")
+                return
+            elif continuar == "S":
+                break
+            else:
+                print("Entrada inválida. Por favor, digite apenas 'S' ou 'N'.")
 
 # Gera um tabuleiro com os navios já posicionados para testes (sem necessidade de input)
 def gerar_tabuleiro_teste():
