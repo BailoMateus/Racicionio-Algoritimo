@@ -29,7 +29,7 @@ def criar_tabuleiro():
 # Exibir o tabuleiro com letras (A-T) e números (1-20)
 def exibir_tabuleiro(tabuleiro):
     # Cabeçalho com os números das colunas
-    cabecalho = "   "
+    cabecalho = "  "
     for i in range(20):
         if i + 1 < 10:
             cabecalho += f" {i + 1} "
